@@ -1,0 +1,25 @@
+.whatsapp {
+  position: fixed;
+  right: 25px;
+  bottom: 30px;
+  border: 0;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  background-image: url('./icon.svg');
+  background-size: 64%;
+  background-position: 51% 48%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.whatsapp__screen-readers {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}

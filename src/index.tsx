@@ -1,15 +1,53 @@
-import React, { FC, HTMLAttributes, ReactChild } from 'react';
+import {
+  AnchorHTMLAttributes,
+  ButtonHTMLAttributes,
+  createElement,
+} from 'react';
+import './styles.css';
 
-export interface Props extends HTMLAttributes<HTMLDivElement> {
-  /** custom content, defaults to 'the snozzberries taste like snozzberries' */
-  children?: ReactChild;
-}
+export type Anchor = AnchorHTMLAttributes<HTMLAnchorElement> & {
+  as?: 'a';
+};
 
-// Please do not use types off of a default export module or else Storybook Docs will suffer.
-// see: https://github.com/storybookjs/storybook/issues/9556
-/**
- * A custom Thing component. Neat!
- */
-export const Thing: FC<Props> = ({ children }) => {
-  return <div>{children || `the snozzberries taste like snozzberries`}</div>;
+export type Button = ButtonHTMLAttributes<HTMLButtonElement> & {
+  as?: 'button';
+};
+
+export type WhatsAppProps = (Anchor | Button) & {
+  phone: number | string;
+  text: string;
+  className?: string;
+};
+
+export const WhatsApp = ({
+  phone,
+  text = '',
+  className,
+  as = 'a',
+  ...props
+}: WhatsAppProps) => {
+  const phoneNumber =
+    typeof phone === 'string' ? phone.replace(/\D/g, '') : phone;
+
+  const link = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${text}`;
+
+  return createElement(
+    as,
+    {
+      ...(as === 'a'
+        ? {
+            href: link,
+          }
+        : as === 'button'
+        ? {
+            onClick: () => {
+              window.location.href = link;
+            },
+          }
+        : null),
+      className: `whatsapp ${className || ''}`,
+      ...props,
+    },
+    createElement('span', { className: 'whatsapp__screen-readers' }, 'whatsapp')
+  );
 };

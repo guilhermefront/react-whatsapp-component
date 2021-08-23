@@ -8,12 +8,12 @@
     "src"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=12.0.0"
   },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
+    "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
     "size": "size-limit",
@@ -48,6 +48,21 @@
       "limit": "10 KB"
     }
   ],
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
+    ],
+    "modulePaths": [
+      "<rootDir>/src"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@size-limit/preset-small-lib": "^5.0.3",
@@ -56,10 +71,15 @@
     "@storybook/addon-links": "^6.3.7",
     "@storybook/addons": "^6.3.7",
     "@storybook/react": "^6.3.7",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
+    "@types/testing-library__jest-dom": "^5.14.1",
     "babel-loader": "^8.2.2",
     "husky": "^7.0.1",
+    "identity-obj-proxy": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2",
@@ -67,5 +87,12 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.3.1",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.3.2",
+    "cssnano": "^5.0.8",
+    "postcss": "^8.3.6",
+    "rollup-plugin-postcss": "^4.0.1",
+    "semantic-release": "^17.4.5"
   }
 }
