@@ -4,8 +4,8 @@
 
 
 
-![downloads][https://img.shields.io/npm/dm/react-whatsapp-component]
-[![MIT License][license-badge]][https://github.com/guilhermefront/react-whatsapp-component/blob/main/LICENSE]
+![downloads](https://img.shields.io/npm/dm/react-whatsapp-component)
+![MIT License](https://img.shields.io/npm/l/react-whatsapp-component)
 ![npm](https://img.shields.io/npm/v/react-whatsapp-component)
 </div>
 
